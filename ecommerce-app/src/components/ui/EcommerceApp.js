@@ -306,7 +306,7 @@ const EcommerceApp = () => {
               <button onClick={handleHomeClick} className="hover:text-gray-300">
                 Home
               </button>
-              <div className="relative">
+              <div className="grid">
                 <button
                   onClick={() => setShowCategories(!showCategories)}
                   className="hover:text-gray-300"
