@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ShoppingCart, Search, Menu, User, Settings, LogOut, UserCircle, Package, Heart, FileText, HelpCircle, Phone } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
+// Account Dropdown Component with working sign out
 const AccountDropdown = ({ isOpen, onClose }) => {
+  const navigate = useNavigate();
+
+  const handleSignOut = () => {
+    localStorage.removeItem('isLoggedIn');
+    navigate('/login');
+    onClose();
+  };
+
   if (!isOpen) return null;
   return (
     <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
@@ -22,7 +32,10 @@ const AccountDropdown = ({ isOpen, onClose }) => {
         Wishlist
       </a>
       <div className="border-t">
-        <button className="flex w-full items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+        <button 
+          onClick={handleSignOut}
+          className="flex w-full items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+        >
           <LogOut className="h-4 w-4 mr-2" />
           Sign Out
         </button>
